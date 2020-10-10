@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MydataService } from './mydata.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
   <h1 class = "green-title"> Hello Once Again!! </h1>
   <h1 [ngClass]= "multiClass"> And Once again, but better size !!</h1>
   <h1 [style.color] = "styleBind ? 'pink' : 'green'"> Style bind conditionally </h1>
+
+  <p>{{servieName}}</p>
   `,
   styles: [`
   h1{
@@ -30,6 +33,18 @@ import { Component } from '@angular/core';
   `]
 })
 export class AppComponent {
+
+  constructor(private myservice: MydataService){
+
+  }
+
+  ngOnInit(){
+    console.log(this.myservice.cars);
+
+    this.servieName = this.myservice.myData();
+  }
+
+  servieName:String = "";
   title = 'project2';
   titleClass = 'red-title';
   showClass = true;
